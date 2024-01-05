@@ -29,8 +29,25 @@
             <div class="card">
                 <div class="card-header">Latest News</div>
                 <div class="card-body">
-                    <p>News placeholder text</p>
-                </div>
+                    @foreach ($news as $article)
+                    <div class="article-container">
+                        <a href="#">
+                            <div class="image-container">
+                                <img class="newsimg" src="/images/logo.png" height=100 width=100 alt="Article Image">
+                            </div>
+                        </a>
+                        <div class="news-container">
+                            <a href="#">
+                                <p><strong>{{ $article->title }}</strong></p>
+                            </a>
+                          <p>{{ $article->content }}</p>
+                          <p class="date">Published on {{ $article->timestamps }}</p>
+                        </div>
+                    </div>
+                   
+                    
+                @endforeach
+                <p style="text-align: right;">More News</p></div>
             </div>
         </div>
         <div class="col-lg-4">

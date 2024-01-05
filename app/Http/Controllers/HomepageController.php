@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Fixture;
 use App\Models\Team;
 use App\Models\Season;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -61,7 +62,9 @@ class HomepageController extends Controller
         ->orderByDesc('totalwin')
         ->get();
 
-        return view('homepage.index', compact('fixtures', 'standings', 'lastResults'));
+        $news = News::latest()->get();
+
+        return view('homepage.index', compact('fixtures', 'standings', 'lastResults', 'news'));
 }
     }
 

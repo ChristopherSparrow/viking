@@ -123,3 +123,32 @@ width:100%;
 margin: 0px;
 padding: 0px;
 border: none; }
+
+.article-container {
+    display: flex;
+    max-width: 800px;
+   margin: 10px auto;/* 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .image-container {
+    flex: 0.2;
+    overflow: hidden;
+  }
+  
+  .newsimg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .news-container {
+    flex: 0.8;
+    padding-left: 10px;
+  }
+  
+
+  .date {
+    color: #888;
+    font-style: italic;
+  }
