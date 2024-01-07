@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use spatie\Html\Elements\Form;
+use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
 
 class Team extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, HasRoles;
     protected $fillable = [
         'team_name',
     ];

@@ -11,13 +11,20 @@
     
         <form method="post" action="{{ route('news.store') }}">
             @csrf
-            <label for="title">Title:</label>
-            <input type="text" name="title" required>
+            <label class="viking-label" for="title">Title:</label>
+            <input class="viking-input" type="text" name="title" id="title" required>
             <br>
-            <label for="content">Content:</label>
-            <textarea name="content" required></textarea>
+            <label class="viking-label" for="content">Content:</label>
+            <textarea class="viking-input" name="content" id="content" required></textarea>
             <br>
-            <button type="submit">Create Article</button>
+            <label class="viking-label" for="category">Category:</label>
+            <select class="viking-select" id="category" name="category">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+            <br>
+            <button class="viking-button"type="submit">Create Article</button>
         </form>
 
 </div>
