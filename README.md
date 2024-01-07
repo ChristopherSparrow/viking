@@ -9,4 +9,14 @@ Authentication
 
 Current fixtures / league standings
 
+Basic news features
+
+## To develop
+Extend news features to include images, and better body text
+
+
+Create roles for league members, league captains, league/cup secretaries and the admin
+
+
+
 
