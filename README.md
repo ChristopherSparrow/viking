@@ -6,7 +6,7 @@ Building a new version of the website on Laravel.  The aim is to rewrite the ori
 
 Basic Bootstrap 5 template
 
-Authentication
+Authentication and basic roles
 
 Current fixtures / league standings
 
