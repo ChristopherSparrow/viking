@@ -45,7 +45,7 @@
                         <label for="away_team_id" class="col-md-4 col-form-label text-md-right">{{ __('Away Team') }}</label>
 
                         <div class="col-md-6">
-                            {!! Form::select('away_team_id', $teams, null, ['class' => 'form-control']) !!}
+                            {!! Form::select('away_team_id', ['' => 'Select Away Team'] + $teams->toArray(), null, ['class' => 'form-control']) !!}
 
                             @error('away_team_id')
                                 <span class="invalid-feedback" role="alert">

@@ -36,4 +36,9 @@ class Fixture extends Model
     {
         return $this->belongsTo(Season::class, 'id');
     }
+
+    public function competition()
+    {
+        return $this->belongsTo(Competition::class);
+    }
 }

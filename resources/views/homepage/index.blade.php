@@ -53,27 +53,27 @@
 
         <div class="col-lg-4">
             <div class="card">
-                @foreach ($fixtures->groupBy('date') as $date => $fixturesByDate)
-                <div class="card-header">Next Cup Fixtures - {{ \Carbon\Carbon::parse($date)->format('d M Y') }}</div>
+                @foreach ($Leaguefixtures->groupBy('date') as $date => $fixturesByDate)
+                <div class="card-header">Next League Fixtures - {{ \Carbon\Carbon::parse($date)->format('D, d M Y') }}</div>
                     <div class="card-body">
 
                         <table class="table">
 
                             <tbody>
-                                @foreach ($fixturesByDate as $fixture)
+                                @foreach ($fixturesByDate as $Leaguefixture)
                                     <tr>
-                                        <td @if ($fixture->home_score > $fixture->away_score) style="font-weight: bold;" @endif>
-                                            {{ $fixture->hometeam->team_name }}
+                                        <td @if ($Leaguefixture->home_score > $Leaguefixture->away_score) style="font-weight: bold;" @endif>
+                                            {{ $Leaguefixture->hometeam->team_name }}
                                         </td>
-                                        <td style="text-align: center;">{{ $fixture->home_score }}</td>
-                                        <td style="text-align: center;">{{ $fixture->away_score }}</td>
-                                        <td @if ($fixture->away_score > $fixture->home_score) style="font-weight: bold; text-align: right;" @else style="text-align: right;" @endif>
-                                            {{ $fixture->awayTeam->team_name }}
+                                        <td style="text-align: center;">{{ $Leaguefixture->home_score }}</td>
+                                        <td style="text-align: center;">{{ $Leaguefixture->away_score }}</td>
+                                        <td @if ($Leaguefixture->away_score > $Leaguefixture->home_score) style="font-weight: bold; text-align: right;" @else style="text-align: right;" @endif>
+                                            {{ $Leaguefixture->awayTeam->team_name }}
                                         </td>
                                         @auth
                                         <td>
-                                            <a href="{{ route('fixtures.edit', $fixture) }}" class="btn btn-primary">{{ __('Edit') }}</a>
-                                            <form method="POST" action="{{ route('fixtures.destroy', $fixture) }}" style="display: inline-block;">
+                                            <a href="{{ route('fixtures.edit', $Leaguefixture) }}" class="btn btn-primary">{{ __('Edit') }}</a>
+                                            <form method="POST" action="{{ route('fixtures.destroy', $Leaguefixture) }}" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
@@ -93,27 +93,35 @@
 
         <div class="col-lg-4">
             <div class="card">
-                @foreach ($fixtures->groupBy('date') as $date => $fixturesByDate)
-                <div class="card-header">Next League Fixtures - {{ \Carbon\Carbon::parse($date)->format('d M Y') }}</div>
+                @if (empty($Cupfixtures)) 
+                <div class="card-header">Next Cup Fixtures</div><div class="card-body"><p>{{ $message }}</p></div>
+                
+                    
+                @else
+             @foreach ($Cupfixtures->groupBy('date') as $date => $fixturesByDate)
+                <div class="card-header">Next Cup Fixtures - {{ \Carbon\Carbon::parse($date)->format('d M Y') }}</div>
                     <div class="card-body">
+                        <p>Fixtures for {{ $Cupfixtures->first()->competition->competitions_name }}:</p>
 
                         <table class="table">
 
                             <tbody>
-                                @foreach ($fixturesByDate as $fixture)
+
+                                @foreach ($fixturesByDate as $Cupfixture)
+                                
                                     <tr>
-                                        <td @if ($fixture->home_score > $fixture->away_score) style="font-weight: bold;" @endif>
-                                            {{ $fixture->hometeam->team_name }}
+                                        <td @if ($Cupfixture->home_score > $Cupfixture->away_score) style="font-weight: bold;" @endif>
+                                            {{ $Cupfixture->hometeam->team_name }}
                                         </td>
-                                        <td style="text-align: center;">{{ $fixture->home_score }}</td>
-                                        <td style="text-align: center;">{{ $fixture->away_score }}</td>
-                                        <td @if ($fixture->away_score > $fixture->home_score) style="font-weight: bold; text-align: right;" @else style="text-align: right;" @endif>
-                                            {{ $fixture->awayTeam->team_name }}
+                                        <td style="text-align: center;">{{ $Cupfixture->home_score }}</td>
+                                        <td style="text-align: center;">{{ $Cupfixture->away_score }}</td>
+                                        <td @if ($Cupfixture->away_score > $Cupfixture->home_score) style="font-weight: bold; text-align: right;" @else style="text-align: right;" @endif>
+                                            {{ $Cupfixture->awayTeam->team_name }}
                                         </td>
                                         @auth
                                         <td>
-                                            <a href="{{ route('fixtures.edit', $fixture) }}" class="btn btn-primary">{{ __('Edit') }}</a>
-                                            <form method="POST" action="{{ route('fixtures.destroy', $fixture) }}" style="display: inline-block;">
+                                            <a href="{{ route('fixtures.edit', $Cupfixture) }}" class="btn btn-primary">{{ __('Edit') }}</a>
+                                            <form method="POST" action="{{ route('fixtures.destroy', $Cupfixture) }}" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
@@ -125,6 +133,8 @@
                             </tbody>
                         </table>
                             @endforeach
+                                                
+@endif
 
 
                     </div>
